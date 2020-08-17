@@ -9,5 +9,13 @@
 
 <body>
 	<h1>Hello World !</h1>
+	
+<%
+	int num1 = 5;
+	int num2 = 7;
+	int sum = num1 + num2;
+	System.out.println(sum);
+%>
+	<%=sum %>
 </body>
 </html>
