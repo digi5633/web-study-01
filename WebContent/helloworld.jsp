@@ -9,14 +9,14 @@
 
 <body>
 	<h1>Hello World !</h1>
-	
-<%
-	int num1 = 5;
+	<%
+		int num1 = 5;
 	int num2 = 7;
 	int sum = num1 + num2;
 	System.out.println(sum);
-%>
-	<%=sum %>
-<a href="http://localhost:8080/web-study-01/AdditonServlet01?num1=30&num2=40">전송</a>
+	%>
+	<%=sum%>
+	<!-- System.out.print(sum); -->
+	<a href="http://localhost:8080/web-study-01/AdditionServlet01?num1=7&num2=8%no=6&name=intern">전송</a>
 </body>
 </html>
