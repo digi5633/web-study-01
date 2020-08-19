@@ -29,8 +29,7 @@ public class AdditionServlet01 extends HttpServlet {
 		dao = TitleDaoImpl.getInstance();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		List<Title> list = dao.selectTitleByAll();
 
@@ -45,13 +44,12 @@ public class AdditionServlet01 extends HttpServlet {
 		 * request.setAttribute("add", add);
 		 */
 		request.setAttribute("list", list);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("add.jsp");
-
 		dispatcher.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doGet(request, response);
 	}

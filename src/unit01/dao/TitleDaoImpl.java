@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import unit01.conn.JdbcUtil;
 import unit01.conn.JdbcUtilBackUp;
+import unit01.conn.JdbcUtil;
 import unit01.dto.Title;
 
 public class TitleDaoImpl implements TitleDao {
@@ -24,7 +24,7 @@ public class TitleDaoImpl implements TitleDao {
 	@Override
 	public List<Title> selectTitleByAll() {
 		String sql = "SELECT TITLE_NO , TITLE_NAME FROM TITLE";
-		try (Connection con = JdbcUtil.getConnection();
+		try (Connection con = JdbcUtilBackUp.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
@@ -43,7 +43,7 @@ public class TitleDaoImpl implements TitleDao {
 	@Override
 	public Title selectTitleByNo(Title title) {
 		String sql = "SELECT TITLE_NO , TITLE_NAME FROM TITLE WHERE TITLE_NO = ?";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+		try (Connection con = JdbcUtilBackUp.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, title.getNo());
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
@@ -61,7 +61,7 @@ public class TitleDaoImpl implements TitleDao {
 	@Override
 	public int insertTitle(Title title) {
 		String sql = "INSERT INTO TITLE values(?, ?)";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+		try (Connection con = JdbcUtilBackUp.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, title.getNo());
 			pstmt.setString(2, title.getName());
 			return pstmt.executeUpdate();
@@ -74,7 +74,7 @@ public class TitleDaoImpl implements TitleDao {
 	@Override
 	public int updateTitle(Title title) {
 		String sql = "UPDATE TITLE SET TITLE_NAME = ? WHERE TITLE_NO = ?";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+		try (Connection con = JdbcUtilBackUp.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, title.getName());
 			pstmt.setInt(2, title.getNo());
 			return pstmt.executeUpdate();
@@ -87,7 +87,7 @@ public class TitleDaoImpl implements TitleDao {
 	@Override
 	public int deleteTitle(Title title) {
 		String sql = "DELETE FROM TITLE WHERE TITLE_NO  = ?";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+		try (Connection con = JdbcUtilBackUp.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, title.getNo());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
